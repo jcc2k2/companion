@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Bookie Beats Companion",
+  "description": "Cross‑browser UX enhancer for prediction markets. Adds small, opt‑in improvements on supported sites.",
+  "version": "0.1.0",
+  "action": {
+    "default_title": "Bookie Beats Companion",
+    "default_popup": "popup/popup.html"
+  },
+  "icons": {
+    "16": "assets/icon16.png",
+    "48": "assets/icon48.png",
+    "128": "assets/icon128.png"
+  },
+  "permissions": ["storage"],
+  "host_permissions": ["*://kalshi.com/*", "*://*.kalshi.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://kalshi.com/*", "*://*.kalshi.com/*"],
+      "js": ["lib/browser-polyfill.js", "sites/kalshi/index.js"],
+      "css": ["sites/kalshi/kalshi.css"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "type": "module"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["sites/kalshi/kalshi.css"],
+      "matches": ["*://kalshi.com/*", "*://*.kalshi.com/*"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "bookiebeats-companion@bookiebeats.com",
+      "strict_min_version": "109.0"
+    }
+  }
+}

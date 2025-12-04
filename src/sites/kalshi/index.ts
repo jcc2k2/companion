@@ -15,6 +15,8 @@ import {
 import { hideChartsAndOptimizeLayout } from "./features/chart-hiding.js";
 import { clearAllAnnotations } from "./utils/dom-utils.js";
 import { clearTeamNameCache } from "./utils/team-detection.js";
+import { injectQuickBetButtons } from "./features/quick-bet.js";
+import { injectPositionBadges } from "./features/position-badges.js";
 
 let conversionTimeout: number | undefined;
 
@@ -38,6 +40,8 @@ function refreshAnnotations(): void {
   clearProcessedSpreads();
   if (getExtensionEnabled()) {
     convertAllCents();
+    injectQuickBetButtons();
+    injectPositionBadges();
   }
 }
 
